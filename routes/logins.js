@@ -22,4 +22,9 @@ router.get('/', async function (req, res, next) {
   res.json({ date: logins });
 });
 
+router.post('/', async function (req, res, next) {
+  var register = await models.Login.create(req.body);
+  res.json({ date: register});
+});
+
 module.exports = router;
