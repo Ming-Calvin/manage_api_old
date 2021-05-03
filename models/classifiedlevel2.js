@@ -2,9 +2,8 @@
 const {
   Model
 } = require('sequelize');
-
 module.exports = (sequelize, DataTypes) => {
-  class Classified extends Model {
+  class ClassifiedLevel2 extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -14,17 +13,18 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  Classified.init({
+  ClassifiedLevel2.init({
+    classifiedId: DataTypes.INTEGER,
     name: DataTypes.STRING,
     level: DataTypes.STRING,
     effective: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'Classified',
+    modelName: 'ClassifiedLevel2',
   });
-  Classified.associate = function (models) {
-    models.Classified.hasMany(models.ClassifiedLevel2)
+  ClassifiedLevel2.associate = function(models) {
+    models.ClassifiedLevel2.belongsTo(models.Classified);
   };
-  return Classified;
+  return ClassifiedLevel2;
 };
 
